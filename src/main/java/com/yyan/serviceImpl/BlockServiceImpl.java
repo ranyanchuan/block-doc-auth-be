@@ -39,21 +39,28 @@ public class BlockServiceImpl extends BaseServiceImpl implements BlockService {
             block.setPreHash(endBlock.getHash());
         }
 
-        // 设置访问路径
-        String filePath = new String(IMG_PATH_PREFIX + block.getFileUrl());
 
+        Integer nonce = 0;
         block.setTimeStamp((new Date()).getTime());
 
+
+        String blockData=block.getData();
+
+        // 文件路径存入区块中
+        if("file".equals(block.getCategory())){
+            String filePath = new String(IMG_PATH_PREFIX + block.getData());   // 设置访问路径
+            blockData = FileUtil.encryptToBase64(filePath); // 对文件进行base64
+        }
+
+
         String target = new String(new char[difficulty]).replace('\0', '0'); //Create a string with difficulty * "0"
-        Integer nonce = 0;
-        String base64File = FileUtil.encryptToBase64(filePath);
-        String hash = calHash(block, base64File);
+        String hash = calHash(block, blockData);
 
         // 工作量证明 挖矿
         while (!hash.substring(0, difficulty).equals(target)) {
             nonce++;
             block.setNonce(nonce);
-            hash = calHash(block, base64File);
+            hash = calHash(block, blockData);
             System.out.println("hash=====" + hash);
         }
         block.setHash(hash);
