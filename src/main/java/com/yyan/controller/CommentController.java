@@ -1,7 +1,7 @@
 package com.yyan.controller;
 
-import com.yyan.pojo.Doc;
-import com.yyan.serviceImpl.DocServiceImpl;
+import com.yyan.pojo.Comment;
+import com.yyan.serviceImpl.CommentServiceImpl;
 import com.yyan.utils.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,20 +12,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/api/doc")
-public class DocController extends BaseController {
+@RequestMapping("/api/comment")
+public class CommentController  extends BaseController {
 
     @Autowired
-    private DocServiceImpl docService;
+    private CommentServiceImpl commentService;
 
     /**
      *添加
      */
     @RequestMapping("/insert")
     @ResponseBody
-    public Map<String, Object> addDoc(@RequestBody Doc doc) {
+    public Map<String, Object> addComment(@RequestBody Comment Comment) {
         try {
-            this.docService.insertDoc(doc);
+            this.commentService.insertComment(Comment);
             return this.buildSuccess();
         } catch (Exception exp) {
             return this.buildError(exp.getMessage());
@@ -38,27 +38,13 @@ public class DocController extends BaseController {
      */
     @RequestMapping("/select")
     @ResponseBody
-    public Map<String, Object> getDoc(@RequestBody Map map) {
+    public Map<String, Object> getComment(@RequestBody Map map) {
         try {
-            return this.buildSuccess(this.docService.selectListDoc(map));
+            return this.buildSuccess(this.commentService.selectListComment(map));
         } catch (Exception exp) {
             return this.buildError(exp.getMessage());
         }
     }
 
-
-    /**
-     *删除
-     */
-    @RequestMapping("/delete")
-    @ResponseBody
-    public Map<String, Object> delDoc(@RequestBody String id) {
-        try {
-            this.docService.deleteDoc(id);
-            return this.buildSuccess();
-        } catch (Exception exp) {
-            return this.buildError(exp.getMessage());
-        }
-    }
 
 }

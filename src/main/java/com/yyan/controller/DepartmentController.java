@@ -1,8 +1,6 @@
 package com.yyan.controller;
 
-import com.yyan.pojo.User;
 import com.yyan.serviceImpl.DepartmentServiceImpl;
-import com.yyan.serviceImpl.UserServiceImpl;
 import com.yyan.utils.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
