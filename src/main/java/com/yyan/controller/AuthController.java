@@ -12,12 +12,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/api/auto")
+@RequestMapping("/api/auth")
 public class AuthController extends BaseController {
 
     @Autowired
     private AuthServiceImpl authService;
-
 
     /**
      *添加

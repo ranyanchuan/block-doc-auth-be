@@ -15,7 +15,8 @@ public interface AuthDao {
     List<Map> selectListAuth(Map map);
     Integer countListAuth(Map map); // 查询数量
 
-    void updateAuth(Map map);
+    void updateAuth(Auth auth);
+
 
 
 }

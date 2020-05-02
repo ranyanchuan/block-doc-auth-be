@@ -28,7 +28,6 @@ public class DocServiceImpl extends BaseServiceImpl implements DocService {
         doc.setDepartmentId(depId);
 
         docDao.insertDoc(doc);
-        System.out.println("ssss");
 
         // 插入区块
         Block block = new Block();
