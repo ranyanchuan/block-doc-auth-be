@@ -21,6 +21,8 @@ public class AuthServiceImpl extends BaseServiceImpl implements AuthService {
     @Override
     public void insertAuth(Auth auth) {
         auth.setState("待审批");
+        auth.setDepartmentId(getDepartmentIdByToken());
+        auth.setUserId(getUserIdToken());
         authDao.insertAuth(auth);
     }
 
