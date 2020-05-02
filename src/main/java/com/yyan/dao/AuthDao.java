@@ -9,7 +9,7 @@ import java.util.Map;
 @Mapper
 public interface AuthDao {
     //  添加
-    void insertAuth(Auth Auth);
+    void insertAuth(Auth auth);
 
     // 查询
     List<Map> selectListAuth(Map map);

@@ -22,7 +22,7 @@ public class DepartmentController extends BaseController {
      */
     @RequestMapping("/select")
     @ResponseBody
-    public Map<String, Object> getBlock(@RequestBody Map map) {
+    public Map<String, Object> getDepartment(@RequestBody Map map) {
         try {
             return this.buildSuccess(this.departmentService.selectListDepartment(map));
         } catch (Exception exp) {
