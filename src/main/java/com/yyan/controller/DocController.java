@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Map;
@@ -52,7 +53,7 @@ public class DocController extends BaseController {
      */
     @RequestMapping("/delete")
     @ResponseBody
-    public Map<String, Object> delDoc(@RequestBody String id) {
+    public Map<String, Object> delDoc(@RequestParam String id) {
         try {
             this.docService.deleteDoc(id);
             return this.buildSuccess();

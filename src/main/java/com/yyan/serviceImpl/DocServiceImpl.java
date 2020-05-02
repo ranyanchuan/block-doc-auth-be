@@ -1,7 +1,5 @@
 package com.yyan.serviceImpl;
 
-import com.sun.jnlp.BasicServiceImpl;
-import com.yyan.dao.DepartmentDao;
 import com.yyan.dao.DocDao;
 import com.yyan.pojo.Block;
 import com.yyan.pojo.Doc;
@@ -19,6 +17,7 @@ public class DocServiceImpl extends BaseServiceImpl implements DocService {
 
     @Autowired
     private DocDao docDao;
+    @Autowired
     private BlockServiceImpl blockService;
 
     @Override
@@ -44,6 +43,7 @@ public class DocServiceImpl extends BaseServiceImpl implements DocService {
     public void deleteDoc(String id) {
         String[] idArr = id.split(",");
         for (String idString : idArr) {
+
             docDao.deleteDoc(idString);
         }
     }

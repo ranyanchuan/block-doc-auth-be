@@ -1,6 +1,8 @@
 import com.yyan.App;
 import com.yyan.dao.DepartmentDao;
+import com.yyan.pojo.Block;
 import com.yyan.pojo.Department;
+import com.yyan.serviceImpl.BlockServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,8 @@ public class TestDepartment {
 
     @Autowired
     private DepartmentDao departmentDao;
+    @Autowired
+    private BlockServiceImpl blockService;
 
 
     @Test
@@ -37,6 +41,19 @@ public class TestDepartment {
         departmentDao.insertDepartment(new Department("17", "财务B部门团队9", "6"));
         departmentDao.insertDepartment(new Department("18", "财务B部门团队10", "6"));
 
-
     }
+
+
+    @Test
+    public void blockInitTest() {
+
+        Block block =new Block();
+        block.setCategory("file");
+        block.setData("a480315e-0920-4337-8c13-30e955405ea6.jpeg");
+        blockService.insertBlock(block);
+    }
+
+
 }
+
+

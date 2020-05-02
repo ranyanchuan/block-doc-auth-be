@@ -28,7 +28,8 @@ public class BlockServiceImpl extends BaseServiceImpl implements BlockService {
         // 获取主链
         Block endBlock = blockDao.selectEndBlock();
         // 用户 id
-        String userId = getUserIdToken();
+//        String userId = getUserIdToken();
+        String userId = "64e39430-8c57-11ea-97d9-003b2b2538ac";
         block.setUserId(userId);
 
         if (endBlock == null) { // 创世区块
