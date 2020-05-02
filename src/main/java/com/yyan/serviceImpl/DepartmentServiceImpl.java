@@ -19,6 +19,7 @@ public class DepartmentServiceImpl extends BaseServiceImpl implements Department
     private List<Department> getThree(List<Department> list, String parentId) {
         //获取所有子节点
         List<Department> childTreeList = getChildTree(list, parentId);
+
         for (Department dept : childTreeList) {
             dept.setChildren(getThree(list, dept.getId()));
         }
@@ -40,6 +41,7 @@ public class DepartmentServiceImpl extends BaseServiceImpl implements Department
 
     @Override
     public List<Department> selectListDepartment(Map map) {
-        return departmentDao.selectListDepartment();
+        List<Department> list = departmentDao.selectListDepartment();
+        return getThree(list, "0");
     }
 }
