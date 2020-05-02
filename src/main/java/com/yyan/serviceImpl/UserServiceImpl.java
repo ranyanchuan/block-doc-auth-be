@@ -63,7 +63,7 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
         resultMap.put("name", user.getName());
 
         // 生成token
-        String token = JwtUtil.sign(user.getEmail(), user.getId());
+        String token = JwtUtil.sign(user.getEmail(), user.getId(),user.getDepartmentId());
         resultMap.put("token", token);
 
         return resultMap;

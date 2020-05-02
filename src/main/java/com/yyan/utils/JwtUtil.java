@@ -31,7 +31,7 @@ public class JwtUtil {
      * @param email  邮箱
      * @return 加密的token
      */
-    public static String sign(String email, String id) {
+    public static String sign(String email, String id,String departmentId) {
         try {
             // 过期时间
             Date date = new Date(System.currentTimeMillis() + EXPIRE_TIME);
@@ -46,6 +46,7 @@ public class JwtUtil {
                     .withHeader(header)
                     .withClaim("id", id)
                     .withClaim("email", email)
+                    .withClaim("departmentId", departmentId)
                     .withExpiresAt(date)
                     .sign(algorithm);
         } catch (UnsupportedEncodingException e) {
@@ -64,6 +65,21 @@ public class JwtUtil {
         try {
             DecodedJWT jwt = JWT.decode(token);
             return jwt.getClaim("id").asString();
+        } catch (JWTDecodeException e) {
+            return null;
+        }
+    }
+
+    /**
+     * 获取登陆用户部门
+     *
+     * @param token
+     * @return
+     */
+    public static String getDepartmentId(String token) {
+        try {
+            DecodedJWT jwt = JWT.decode(token);
+            return jwt.getClaim("departmentId").asString();
         } catch (JWTDecodeException e) {
             return null;
         }

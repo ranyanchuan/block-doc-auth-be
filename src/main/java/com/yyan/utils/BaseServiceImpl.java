@@ -23,6 +23,11 @@ public class BaseServiceImpl {
         return JwtUtil.getUserId(token);
     }
 
+    public String getDepartmentIdByToken() {
+        String token = request.getHeader("Authorization");// 获取 token
+        return JwtUtil.getDepartmentId(token);
+    }
+
 
     /**
      * 获取用户 id

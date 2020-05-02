@@ -10,7 +10,7 @@ public class User {
     private String phone; // 用户手机号
     private String email; // 用户邮箱
     private String name; // 用户名
-    private String departId; // 部门
+    private String departmentId; // 部门
     private String password; //  登录密码
     private Date createTime;  // 创建时间
     private Date updateTime;  // 修改时间
