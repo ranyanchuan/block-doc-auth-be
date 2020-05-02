@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -28,6 +29,8 @@ public class DocServiceImpl extends BaseServiceImpl implements DocService {
         doc.setDepartmentId(depId);
 
         docDao.insertDoc(doc);
+        System.out.println("ssss");
+
         // 插入区块
         Block block = new Block();
         block.setCategory("file");
@@ -37,12 +40,21 @@ public class DocServiceImpl extends BaseServiceImpl implements DocService {
     }
 
     @Override
+    @Transactional // 添加事务
     public void deleteDoc(String id) {
-
+        String[] idArr = id.split(",");
+        for (String idString : idArr) {
+            docDao.deleteDoc(idString);
+        }
     }
 
     @Override
     public Map<String, Object> selectListDoc(Map map) {
-        return null;
+
+        List<Map> newList = docDao.selectListDoc(checkPageSize(map));
+
+        Integer count = docDao.countListDoc(map);
+        return this.queryListSuccess(newList, count, map); //查询成功
+
     }
 }
