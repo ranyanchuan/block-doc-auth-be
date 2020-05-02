@@ -12,7 +12,6 @@ public class Doc {
     private String fileUrl;
     private String abs;
     private String departId; // 部门id
-
     private Date createTime;  // 创建时间
     private Date updateTime;  // 修改时间
 }
