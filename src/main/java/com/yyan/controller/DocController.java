@@ -83,7 +83,8 @@ public class DocController extends BaseController {
     @ResponseBody
     public Map<String, Object> addDocView(@RequestBody Map map) {
         try {
-            return this.buildSuccess(this.docService.selectListDoc(map));
+            this.docService.insertDocView(map);
+            return this.buildSuccess();
         } catch (Exception exp) {
             return this.buildError(exp.getMessage());
         }

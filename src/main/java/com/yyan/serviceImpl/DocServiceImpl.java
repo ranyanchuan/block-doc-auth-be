@@ -70,6 +70,7 @@ public class DocServiceImpl extends BaseServiceImpl implements DocService {
             List<Map> newList = new ArrayList<>();
             for (Map mp : list) {
                 mp.put("state", "未申请");
+
                 newList.add(mp);
             }
             Integer count = docDao.countListDoc(map);
@@ -83,6 +84,7 @@ public class DocServiceImpl extends BaseServiceImpl implements DocService {
             List<Map> newList = new ArrayList<>();
             for (Map mp : list) {
                 mp.put("state", "同意");
+                mp.put("userId", getUserIdToken());
                 newList.add(mp);
             }
             Integer count = docDao.countListDoc(map);
@@ -108,6 +110,8 @@ public class DocServiceImpl extends BaseServiceImpl implements DocService {
                 state = (String) sMap.get("state");
                 sTime = formatter.format(sMap.get("sTime"));
                 eTime = formatter.format(sMap.get("eTime"));
+
+
                 Date eDate = (Date) sMap.get("eTime");
                 Date nDate = new Date();
                 if (eDate.getTime() < nDate.getTime()) {
@@ -141,8 +145,9 @@ public class DocServiceImpl extends BaseServiceImpl implements DocService {
 
         User user = userDao.getUserById(userId);
         Department department = departmentDao.getDepartmentById(departId);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        map.put("date", new Date());
+        map.put("date", formatter.format(new Date()));
         map.put("userId", userId);
         map.put("userName", user.getName());
         map.put("departId", departId);

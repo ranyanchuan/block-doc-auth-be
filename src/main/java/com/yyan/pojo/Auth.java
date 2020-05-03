@@ -30,7 +30,7 @@ public class Auth implements Serializable {
 
     @Override
     public String toString() {
-        return "Auth{" +
+        return "{" +
                 "id='" + id + '\'' +
                 ", userId='" + userId + '\'' +
                 ", userName='" + userName + '\'' +
