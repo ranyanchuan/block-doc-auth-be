@@ -45,6 +45,12 @@ public class AuthServiceImpl extends BaseServiceImpl implements AuthService {
     }
 
     @Override
+    public void reInsertAuth(Auth auth) {
+        auth.setState("待审批");
+        authDao.updateAuth(auth);
+    }
+
+    @Override
     public Map<String, Object> selectListAuth(Map map) {
         map.put("departmentId",getDepartmentIdByToken());
         List<Map> list = authDao.selectListAuth(checkPageSize(map));

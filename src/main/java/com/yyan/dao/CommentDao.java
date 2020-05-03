@@ -10,8 +10,7 @@ import java.util.Map;
 @Mapper
 public interface CommentDao {
 
-
-    void insertDoc(Comment comment);
+    void insertComment(Comment comment);
     // 查询
     List<Map> selectListComment(Map map);
     Integer countListComment(Map map); // 查询数量

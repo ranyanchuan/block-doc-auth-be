@@ -12,5 +12,16 @@ public class Comment {
     private String docId;
     private Date createTime;  // 创建时间
     private Date updateTime;  // 修改时间
-    
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", userId='" + userId + '\'' +
+                ", docId='" + docId + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                '}';
+    }
 }

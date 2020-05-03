@@ -60,4 +60,17 @@ public class AuthController extends BaseController {
             return this.buildError(exp.getMessage());
         }
     }
+    /**
+     *修改
+     */
+    @RequestMapping("/reInsert")
+    @ResponseBody
+    public Map<String, Object> reInsertAuth(@RequestBody Auth auth) {
+        try {
+            this.authService.reInsertAuth(auth);
+            return this.buildSuccess();
+        } catch (Exception exp) {
+            return this.buildError(exp.getMessage());
+        }
+    }
 }
