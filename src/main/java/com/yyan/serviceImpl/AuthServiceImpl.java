@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,12 +31,15 @@ public class AuthServiceImpl extends BaseServiceImpl implements AuthService {
     @Override
     @Transactional // 添加事务
     public void updateAuth(Auth auth) {
-        auth.setState("可阅读");
         authDao.updateAuth(auth);
+        Map map = new HashMap();
+        map.put("id", auth.getId());
+        List<Map> list = authDao.selectListAuth(checkPageSize(map));
         // 插入区块
         Block block = new Block();
         block.setCategory("approval");
-        block.setData(auth.toString());
+
+        block.setData(list.toString());
         blockService.insertBlock(block);
 
     }

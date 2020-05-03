@@ -52,7 +52,7 @@ public class AuthController extends BaseController {
      */
     @RequestMapping("/update")
     @ResponseBody
-    public Map<String, Object> delAuth(@RequestBody Auth auth) {
+    public Map<String, Object> updAuth(@RequestBody Auth auth) {
         try {
             this.authService.updateAuth(auth);
             return this.buildSuccess();
