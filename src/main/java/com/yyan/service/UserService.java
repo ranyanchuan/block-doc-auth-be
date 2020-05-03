@@ -10,5 +10,7 @@ public interface UserService {
 
     void updateUser(User user);
 
+    Map selectDashboard();
+
     Map login(String email, String password);
 }

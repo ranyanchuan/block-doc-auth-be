@@ -40,7 +40,7 @@ public class UserController extends BaseController {
      */
     @RequestMapping("/login")
     @ResponseBody
-    public Map<String, Object> selectUser(HttpServletRequest request,@RequestBody User user) {
+    public Map<String, Object> selectUser(HttpServletRequest request, @RequestBody User user) {
         try {
             Map map = this.userService.login(user.getEmail(), user.getPassword());
             request.getSession().setAttribute("userId", map.get("id"));
@@ -79,5 +79,21 @@ public class UserController extends BaseController {
             return this.buildError(exp.getMessage());
         }
     }
+
+
+    /**
+     * 添加用户
+     */
+    @RequestMapping("/dashboard")
+    @ResponseBody
+    public Map<String, Object> selectDashboard() {
+        try {
+
+            return this.buildSuccess(this.userService.selectDashboard());
+        } catch (Exception exp) {
+            return this.buildError(exp.getMessage());
+        }
+    }
+
 
 }
