@@ -101,7 +101,7 @@ public class BlockServiceImpl extends BaseServiceImpl implements BlockService {
 
     @Override
     public Map<String, Object> selectListBlockSelf(Map map) {
-        map.put("userId", getUserIdToken()); //添加用户id
+        map.put("departmentId", getDepartmentIdByToken());
 
         List<Map> newList = this.blockDao.selectListBlock(checkPageSize(map));
 

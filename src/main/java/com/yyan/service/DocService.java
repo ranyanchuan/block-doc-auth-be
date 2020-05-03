@@ -14,4 +14,6 @@ public interface DocService {
     void deleteDoc(String id);
 
     Map<String, Object> selectListDoc(Map map); // 查询
+
+    Map<String, Object> selectListSelfDoc(Map map); // 查询
 }

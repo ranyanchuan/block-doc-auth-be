@@ -16,6 +16,11 @@ public interface DocDao {
     List<Map> selectListDoc(Map map);
     Integer countListDoc(Map map); // 查询数量
 
+
+    // 查询
+    List<Map> selectListSelfDoc(Map map);
+    Integer countListSelfDoc(Map map); // 查询数量
+
     void deleteDoc(String id);
 
     

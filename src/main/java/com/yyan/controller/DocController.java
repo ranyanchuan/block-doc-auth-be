@@ -47,6 +47,19 @@ public class DocController extends BaseController {
         }
     }
 
+    /**
+     * 根据条件查询
+     */
+    @RequestMapping("/self/select")
+    @ResponseBody
+    public Map<String, Object> getDocSelf(@RequestBody Map map) {
+        try {
+            return this.buildSuccess(this.docService.selectListSelfDoc(map));
+        } catch (Exception exp) {
+            return this.buildError(exp.getMessage());
+        }
+    }
+
 
     /**
      *删除

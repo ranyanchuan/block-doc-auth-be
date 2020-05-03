@@ -46,6 +46,7 @@ public class AuthServiceImpl extends BaseServiceImpl implements AuthService {
 
     @Override
     public Map<String, Object> selectListAuth(Map map) {
+        map.put("departmentId",getDepartmentIdByToken());
         List<Map> list = authDao.selectListAuth(checkPageSize(map));
         Integer count = authDao.countListAuth(checkPageSize(map));
         return this.queryListSuccess(list, count, map); //查询成功

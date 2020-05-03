@@ -60,8 +60,12 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 
         Map map = new HashMap();
         map.put("departmentId", getDepartmentIdByToken());
-        // todo 获取任务
-        Integer taskCount = authDao.countListAuth(checkPageSize(map));
+
+        // 获取任务
+        Map map0 = new HashMap();
+        map0.put("departmentId", getDepartmentIdByToken());
+        map0.put("state", "待审批");
+        Integer taskCount = authDao.countListAuth(checkPageSize(map0));
         // todo 文件管理
         Integer fileCount = docDao.countListDoc(checkPageSize(map));
         // todo 总区块链
