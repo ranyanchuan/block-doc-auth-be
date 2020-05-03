@@ -15,4 +15,7 @@ public interface DepartmentDao {
     List<Department> selectListDepartment();
 
 
+    Department getDepartmentById(String id);
+
+
 }

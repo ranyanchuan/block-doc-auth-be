@@ -1,9 +1,13 @@
 package com.yyan.serviceImpl;
 
 import com.yyan.dao.AuthDao;
+import com.yyan.dao.DepartmentDao;
 import com.yyan.dao.DocDao;
+import com.yyan.dao.UserDao;
 import com.yyan.pojo.Block;
+import com.yyan.pojo.Department;
 import com.yyan.pojo.Doc;
+import com.yyan.pojo.User;
 import com.yyan.service.DocService;
 import com.yyan.utils.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +26,10 @@ public class DocServiceImpl extends BaseServiceImpl implements DocService {
     private BlockServiceImpl blockService;
     @Autowired
     private AuthDao authDao;
+    @Autowired
+    private UserDao userDao;
+    @Autowired
+    private DepartmentDao departmentDao;
 
     @Override
     @Transactional // 添加事务
@@ -124,5 +132,28 @@ public class DocServiceImpl extends BaseServiceImpl implements DocService {
         List<Map> newList = docDao.selectListDoc(checkPageSize(map));
         Integer count = docDao.countListDoc(map);
         return this.queryListSuccess(newList, count, map); //查询成功
+    }
+
+    @Override
+    public void insertDocView(Map map) {
+        String userId = getUserIdToken();
+        String departId = getDepartmentIdByToken();
+
+        User user = userDao.getUserById(userId);
+        Department department = departmentDao.getDepartmentById(departId);
+
+        map.put("date", new Date());
+        map.put("userId", userId);
+        map.put("userName", user.getName());
+        map.put("departId", departId);
+        map.put("departName", department.getTitle());
+
+        // 插入区块
+        Block block = new Block();
+        block.setCategory("read");
+        block.setData(map.toString());
+        blockService.insertBlock(block);
+
+
     }
 }

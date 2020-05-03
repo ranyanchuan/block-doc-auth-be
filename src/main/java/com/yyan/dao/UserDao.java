@@ -14,4 +14,6 @@ public interface UserDao {
 
     User login(Map<String, Object> map);
 
+    User getUserById(String id);
+
 }

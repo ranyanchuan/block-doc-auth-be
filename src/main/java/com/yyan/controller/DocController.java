@@ -75,4 +75,20 @@ public class DocController extends BaseController {
         }
     }
 
+
+    /**
+     * 根据条件查询
+     */
+    @RequestMapping("/view")
+    @ResponseBody
+    public Map<String, Object> addDocView(@RequestBody Map map) {
+        try {
+            return this.buildSuccess(this.docService.selectListDoc(map));
+        } catch (Exception exp) {
+            return this.buildError(exp.getMessage());
+        }
+    }
+
+
+
 }

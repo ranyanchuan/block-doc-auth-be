@@ -16,4 +16,6 @@ public interface DocService {
     Map<String, Object> selectListDoc(Map map); // 查询
 
     Map<String, Object> selectListSelfDoc(Map map); // 查询
+
+    void insertDocView(Map map);
 }
