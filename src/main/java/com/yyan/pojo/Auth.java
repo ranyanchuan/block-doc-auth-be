@@ -14,6 +14,7 @@ public class Auth implements Serializable {
     private String userName;
     private String docId;
     private String docTitle;
+    private String docAbs;
     private String departmentId;
     private String departmentTitle;
     private String state;

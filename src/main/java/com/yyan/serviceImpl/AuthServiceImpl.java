@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -41,6 +42,8 @@ public class AuthServiceImpl extends BaseServiceImpl implements AuthService {
 
     @Override
     public Map<String, Object> selectListAuth(Map map) {
-        return null;
+        List<Map> list = authDao.selectListAuth(checkPageSize(map));
+        Integer count = authDao.countListAuth(checkPageSize(map));
+        return this.queryListSuccess(list, count, map); //查询成功
     }
 }
