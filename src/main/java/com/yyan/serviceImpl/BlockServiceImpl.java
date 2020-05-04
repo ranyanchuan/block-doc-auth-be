@@ -29,7 +29,9 @@ public class BlockServiceImpl extends BaseServiceImpl implements BlockService {
         Block endBlock = blockDao.selectEndBlock();
         // 用户 id
         String userId = getUserIdToken();
+        String departmentId = getDepartmentIdByToken();
         block.setUserId(userId);
+        block.setDepartmentId(departmentId);
 
         if (endBlock == null) { // 创世区块
             block.setHeight(0);

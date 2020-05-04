@@ -117,6 +117,8 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
         Map resultMap = new HashMap();
         resultMap.put("id", user.getId());
         resultMap.put("name", user.getName());
+        resultMap.put("role", user.getRole());
+        resultMap.put("departmentId", user.getDepartmentId());
 
         // 生成token
         String token = JwtUtil.sign(user.getEmail(), user.getId(), user.getDepartmentId());

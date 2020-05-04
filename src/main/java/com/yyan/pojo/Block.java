@@ -11,6 +11,7 @@ public class Block {
     public String userId; // 创建人
     private String userName; //  加密文件路径
     public String preHash; // 前节点hash
+    public String departmentId; // 前节点hash
     private String data; //  加密类容
     private long timeStamp; //时间搓 1/1/1970.
     private int nonce; // 随机数
