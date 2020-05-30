@@ -53,7 +53,6 @@ public class DocServiceImpl extends BaseServiceImpl implements DocService {
     public void deleteDoc(String id) {
         String[] idArr = id.split(",");
         for (String idString : idArr) {
-
             docDao.deleteDoc(idString);
         }
     }
@@ -64,7 +63,23 @@ public class DocServiceImpl extends BaseServiceImpl implements DocService {
 
         System.out.println("eeee");
         // todo 用户登录 部门验证 申请
-//        map.put("userId",);
+
+        // 超级用户
+
+        if("admin@163.com".equals(getEmailByToken())){
+            List<Map> list = docDao.selectListDoc(checkPageSize(map));
+            List<Map> newList = new ArrayList<>();
+            for (Map mp : list) {
+                mp.put("state", "同意");
+
+                newList.add(mp);
+            }
+            Integer count = docDao.countListDoc(map);
+            return this.queryListSuccess(newList, count, map); //查询成功
+        }
+
+
+
         // 用户未登录
         if (getUserIdToken() == null) {
             List<Map> list = docDao.selectListDoc(checkPageSize(map));

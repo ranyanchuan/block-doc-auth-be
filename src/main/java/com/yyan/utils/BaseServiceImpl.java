@@ -29,6 +29,11 @@ public class BaseServiceImpl {
     }
 
 
+    public String getEmailByToken() {
+        String token = request.getHeader("Authorization");// 获取 token
+        return JwtUtil.getEmail(token);
+    }
+
     /**
      * 获取用户 id
      *

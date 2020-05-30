@@ -118,6 +118,7 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
         resultMap.put("id", user.getId());
         resultMap.put("name", user.getName());
         resultMap.put("role", user.getRole());
+        resultMap.put("email", user.getEmail());
         resultMap.put("departmentId", user.getDepartmentId());
 
         // 生成token
