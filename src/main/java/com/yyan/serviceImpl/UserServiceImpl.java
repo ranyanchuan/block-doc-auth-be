@@ -1,10 +1,8 @@
 package com.yyan.serviceImpl;
 
-import com.yyan.dao.AuthDao;
-import com.yyan.dao.BlockDao;
-import com.yyan.dao.DocDao;
-import com.yyan.dao.UserDao;
+import com.yyan.dao.*;
 import com.yyan.pojo.User;
+import com.yyan.pojo.UserRole;
 import com.yyan.service.UserService;
 import com.yyan.utils.BaseServiceImpl;
 import com.yyan.utils.JwtUtil;
@@ -15,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @Service
 public class UserServiceImpl extends BaseServiceImpl implements UserService {
@@ -30,6 +29,10 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
     private BlockDao blockDao;
 
 
+    @Autowired
+    private UserRoleDao userRoleDao;
+
+
     /**
      * 注册用户
      *
@@ -38,7 +41,21 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
     @Override
     public void insertUser(User user) {
         user.setPassword(StringUtil.md5Code(user.getPassword())); //对密码进行 md5
+        String id = UUID.randomUUID().toString();
+
+        user.setId(id);
         userDao.insertUser(user);
+
+        // 插入 userRole
+        UserRole userRole = new UserRole();
+        if ("manager".equals(user.getRole())) {
+            userRole.setRoleId("1");
+        } else {
+            userRole.setRoleId("2");
+        }
+        userRole.setUserId(id);
+        userRoleDao.insertUserRole(userRole);
+
     }
 
     /**
